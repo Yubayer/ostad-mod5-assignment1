@@ -2,10 +2,12 @@
 
 @section('content')
 <div class="card">
-    <div class="card-header">{{ __('Shop Index') }}</div>
+    <div class="card-header">{{ __('Shop Details') }}</div>
 
     <div class="card-body">
-        Shop index page...
+        <h4>Shop Name: <strong class="badge bg-warning">{{ $shop->name }}</strong> </h4>
+        
+        <h4>Shop Id: <strong class="badge bg-warning">{{ $shop->id }}</strong></h4>
     </div>
 </div>
 @endsection
