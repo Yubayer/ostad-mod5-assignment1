@@ -37,13 +37,24 @@
                 </tfoot>
                 <tbody>
                     @foreach($collections as $key => $collection)
+                        @php
+                            $id = explode("Collection/", $collection['node']->id)[1]
+                        @endphp
                         <tr>
-                            <td>{{ $key+1 }}</td>    
+                            <td title="{{$collection['node']->id}}">{{$collection['node']->id}}</td>    
                             <td>{{ $collection['node']->title }}</td>
                             <td>{{ $collection['node']->handle }}</td>
                             <td>{{ $collection['node']->productsCount }}</td>
                             <td>{{ $collection['node']->sortOrder }}</td>
-                            <td>Edit | Delete</td>
+                            <td class="d-flex">
+                                <a class="btn btn-sm btn-info mr-2" href="{{URL::tokenRoute('collection.edit', ['id' =>  $id])}}">Edit</a>
+                                <form action="{{route('collection.delete')}}" method="POST">
+                                    @sessionToken
+                                    <input type="hidden" name="host" value="{{getHost()}}">      
+                                    <input type="hidden" name="id" value="{{ $collection['node']->id }}">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
