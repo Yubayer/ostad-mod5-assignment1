@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="card">
-    <div class="card-header d-flex justify-content-center">
+    <div class="card-header d-flex justify-content-between">
         <h3><span class="badge badge-warning">{{ __('New Product Create Form') }}</span></h3>
+        <a href="{{URL::tokenRoute('product.index')}}">Return back</a>
     </div>
 
     <div class="card-body">
