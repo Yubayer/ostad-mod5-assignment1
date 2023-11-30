@@ -12,7 +12,7 @@
     
             <div class="mb-3">
                 <label for="colTitle" class="form-label">Collection Title</label>
-                <input type="text" name="title" class="form-control" id="colTitle" placeholder="Collection Title">
+                <input type="text" name="title" class="form-control" id="colTitle" placeholder="Collection Title" required>
             </div>
             <div class="mb-3">
                 <label for="colDesc" class="form-label">Collection Description</label>

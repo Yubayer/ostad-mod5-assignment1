@@ -23,11 +23,16 @@ Route::prefix('collection')->controller(CollectionController::class)->name('coll
     Route::post('delete', 'delete')->name('delete');
     Route::get('edit/{id}', 'edit')->name('edit');
     Route::post('update', 'update')->name('update');
+    Route::get('products/{id}/{collection}', 'products')->name('products');
 });
 
 Route::prefix('product')->controller(ProductController::class)->name('product.')->middleware(['verify.shopify'])->group(function(){
     Route::get('index', 'index')->name('index');
     Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::get('edit/{id}', 'edit')->name('edit');
+    Route::post('update', 'update')->name('update');
+    Route::post('delete', 'delete')->name('delete');
 });
 
 Route::get('proxy', [AppProxyController::class, 'index'])->middleware(['auth.proxy', 'verify.shopify']);

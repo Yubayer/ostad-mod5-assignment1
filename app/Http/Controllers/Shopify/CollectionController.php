@@ -19,10 +19,9 @@ class CollectionController extends Controller
                     node {
                     id
                     title
-                    handle
+                    description
                     updatedAt
                     productsCount
-                    sortOrder
                     }
                 }
                 }
@@ -112,6 +111,14 @@ class CollectionController extends Controller
 
             $redirectUrl = getRedirectRoute('collection.index');
             return redirect($redirectUrl);
-        dd($gid);
+    }
+
+    public function products(Request $request, $id, $collection) {
+        $shop = $request->user();
+
+        $response = $shop->api()->rest('GET', '/admin/api/2023-10/collections/'.$id.'/products.json');
+        $products = $response['body']['products'];
+
+        return view('collection.products', compact('products','collection'));
     }
 }

@@ -7,7 +7,7 @@
 @section('content')
 <div class="card">
     <div class="card-header d-flex justify-content-between">
-        <h4>All Products [{{count($products)}}]</h4>
+        <h4>All Products Within <b><q>{{$collection}}</q></b> Collection</h4>
         <a class="btn btn-warning" href="{{ URL::tokenRoute('product.create') }}">Create New Product</a>
     </div>
 
@@ -33,9 +33,6 @@
                 </tfoot>
                 <tbody>
                     @foreach($products as $key => $product)
-                        @php
-                            
-                        @endphp
                         <tr>
                             <td>{{$key+1}}</td>    
                             <td>{{ $product->title }}</td>

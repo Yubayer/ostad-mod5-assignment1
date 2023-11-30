@@ -12,7 +12,7 @@
             <input type="hidden" name="id" value="{{$collection->admin_graphql_api_id}}">
             <div class="mb-3">
                 <label for="colTitle" class="form-label">Collection Title</label>
-                <input type="text" name="title" class="form-control" id="colTitle" value="{{$collection->title}}" placeholder="Collection Title">
+                <input type="text" name="title" class="form-control" id="colTitle" value="{{$collection->title}}" placeholder="Collection Title" required>
             </div>
             <div class="mb-3">
                 <label for="colDesc" class="form-label">Collection Description</label>

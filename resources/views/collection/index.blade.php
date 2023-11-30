@@ -6,9 +6,9 @@
 
 @section('content')
 <div class="card">
-    <div class="card-header">
-        <h4>{{ __('Collection Index') }}</h4>
-        <a class="btn btn-warning" href="{{ URL::tokenRoute('collection.create') }}">Create New</a>
+    <div class="card-header  d-flex justify-content-between">
+        <h4>{{ __('All Collections') }}</h4>
+        <a class="btn btn-warning" href="{{ URL::tokenRoute('collection.create') }}">Create New Collection</a>
     </div>
 
 
@@ -18,34 +18,33 @@
                 <thead>
                     <tr>
                         <th>S/L</th>
-                        <th>Tigle</th>
-                        <th>Handle</th>
-                        <th>Product Count</th>
-                        <th>Sort Order</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Products</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>S/L</th>
-                        <th>Tigle</th>
-                        <th>Handle</th>
-                        <th>Product Count</th>
-                        <th>Sort Order</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Products</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach($collections as $key => $collection)
                         @php
-                            $id = explode("Collection/", $collection['node']->id)[1]
+                            $id = explode("Collection/", $collection['node']->id)[1];
                         @endphp
                         <tr>
-                            <td title="{{$collection['node']->id}}">{{$collection['node']->id}}</td>    
+                            <td title="{{$collection['node']->id}}">{{$key + 1}}</td>    
                             <td>{{ $collection['node']->title }}</td>
-                            <td>{{ $collection['node']->handle }}</td>
-                            <td>{{ $collection['node']->productsCount }}</td>
-                            <td>{{ $collection['node']->sortOrder }}</td>
+                            <td>{{ $collection['node']->description }}</td>
+                            <td>
+                                <a href="{{URL::tokenRoute('collection.products', ['id' => $id, 'collection' => $collection['node']->title])}}" class="btn btn-sm btn-primary">{{ $collection['node']->productsCount }} Products</a>
+                            </td>
                             <td class="d-flex">
                                 <a class="btn btn-sm btn-info mr-2" href="{{URL::tokenRoute('collection.edit', ['id' =>  $id])}}">Edit</a>
                                 <form action="{{route('collection.delete')}}" method="POST">
